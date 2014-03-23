@@ -50,13 +50,20 @@ class PodcastHolder_Controller extends Page_Controller {
 	function iTunesLink() {
 		return str_replace("http://", "itp://", $this->AbsoluteLink()."rss");
 	}
+
 	public function PodcastList(){
-//$children = $this->Children();
-		$children = DataObject::get('Podcast', "ParentID = $this->ID"); 
+		if(!isset($_GET['start']) || !is_numeric($_GET['start']) || (int)$_GET['start'] < 1) $_GET['start'] = 0;
+		$SQL_start = (int)$_GET['start']; 
+		$children = DataObject::get(
+			$callerClass = 'Podcast',
+			$filter = "ParentID = $this->ID",
+			$sort = 'Date DESC',
+			$join = '',
+			$limit = "$SQL_start, 12" 
+		); 
 		if( !$children )
 			return null; 
-		$children->sort('Date', 'DESC');
-		$children->limit(15);
+
 		return $children;
 	}
 }
