@@ -36,6 +36,9 @@ class PodcastHolder extends Page {
 
 }
 class PodcastHolder_Controller extends Page_Controller {
+	private static $allowed_actions = array (
+		'rss'
+	);
 	public function init() {
 		RSSFeed::linkToFeed($this->Link("rss"), "Podcast feed");
 		parent::init();
