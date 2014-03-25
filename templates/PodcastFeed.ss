@@ -19,12 +19,11 @@
     <% loop PodcastList %>
     <item>
       <title>$EpisodeTitle</title>
-      <itunes:author>$Artist</itunes:author>
-      <% if Summary %><itunes:summary>$Summary</itunes:summary><% end_if %>
-      <enclosure url="<% if Audio %>$Audio.AbsoluteURL<% else %>$ExternalLink<% end_if %>"
-      <% if Audio %>length="$Audio.getAbsoluteSize"<% end_if %> type="audio/mp3" />
       <guid>$AbsoluteLink</guid>
+      <% if Summary %><itunes:summary>$Summary</itunes:summary><% end_if %>
+      <enclosure url="<% if Audio %>$Audio.AbsoluteURL<% else %>$ExternalLink<% end_if %>" length="<% if Audio %>$Audio.getAbsoluteSize<% else %>0<% end_if %>" type="audio/mp3"></enclosure>
       <pubDate>$Date.Rfc822</pubDate>
+      <itunes:author>$Artist</itunes:author>
       <itunes:duration>$Duration</itunes:duration>
     </item>
     <% end_loop %>
