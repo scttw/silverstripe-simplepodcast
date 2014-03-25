@@ -21,12 +21,11 @@
       <title>$EpisodeTitle</title>
       <itunes:author>$Artist</itunes:author>
       <% if Summary %><itunes:summary>$Summary</itunes:summary><% end_if %>
-      
       <enclosure url="$Audio.AbsoluteURL"
       length="$Audio.getAbsoluteSize" type="audio/mp3" />
-      <guid>$Link</guid>
+      <guid>$AbsoluteLink</guid>
       <pubDate>$Date.Rfc822</pubDate>
-      <itunes:duration>Duration</itunes:duration>
+      <itunes:duration>$Duration</itunes:duration>
     </item>
     <% end_loop %>
   </channel>
