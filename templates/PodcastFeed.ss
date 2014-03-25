@@ -16,7 +16,7 @@
     <% end_if %>
     <itunes:category text="$Category"></itunes:category>
 
-    <% control PodcastList %>
+    <% loop PodcastList %>
     <item>
       <title>$EpisodeTitle</title>
       <itunes:author>$Artist</itunes:author>
@@ -28,6 +28,6 @@
       <pubDate>$Date.Rfc822</pubDate>
       <itunes:duration>Duration</itunes:duration>
     </item>
-    <% end_control %>
+    <% end_loop %>
   </channel>
 </rss>
