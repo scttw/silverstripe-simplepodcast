@@ -13,4 +13,31 @@ $Description
 		<p>$Date.Long - <% if Audio %>$Audio.getSize $Audio.getFileType<% else %> MP3 Audio<% end_if %></p>
 	</div>
 <% end_control %>
+	<% if PodcastList.MoreThanOnePage %>
+	<div id="PageNumbers">
+		<p>
+			<% if PodcastList.NotFirstPage %>
+			<a class="prev" href="$PodcastList.PrevLink" title="View the previous page">Prev</a>
+			<% end_if %>
+
+			<span>
+				<% loop PodcastList.PaginationSummary(4) %>
+				<% if CurrentBool %>
+				$PageNum
+				<% else %>
+				<% if Link %>
+				<a href="$Link" title="View page number $PageNum">$PageNum</a>
+				<% else %>
+				&hellip;
+				<% end_if %>
+				<% end_if %>
+				<% end_loop %>
+			</span>
+
+			<% if PodcastList.NotLastPage %>
+			<a class="next" href="$PodcastList.NextLink" title="View the next page">Next</a>
+			<% end_if %>
+		</p>
+	</div>
+	<% end_if %> 
 </div>
