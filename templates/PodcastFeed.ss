@@ -2,7 +2,7 @@
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
   <channel>
     <title>$PodcastTitle</title>
-    <link>$$FeedLink</link>
+    <link>$FeedLink</link>
     <language>en-us</language>
     <copyright>$Copyright</copyright>
 
@@ -14,7 +14,7 @@
     <% if PodcastIcon %>
     <itunes:image href="$PodcastIcon.AbsoluteURL"></itunes:image>
     <% end_if %>
-    <itunes:category text="$Category" />
+    <itunes:category text="$Category"></itunes:category>
 
     <% control PodcastList %>
     <item>
