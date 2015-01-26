@@ -1,0 +1,25 @@
+{
+"name": "scttw/silverstripe-simple-podcast",
+"description": "A module to allow authoring of a simple podcast",
+"type": "silverstripe-module",
+"homepage": "http://github.com/scttw/silverstripe-simplepodcast",
+"keywords": ["silverstripe", "podcast"],
+"license": "BSD-3-Clause",
+"authors": [
+{
+"name": "Rowen Atkinson",
+"email": "rowen.atkinson@gmail.com"
+}
+],
+"support": {
+"issues": "http://github.com/scttw/silverstripe-simplepodcast/issues"
+},
+"require": {
+"silverstripe/framework": ">=3.0",
+"silverstripe/cms": ">=3.0",
+"micschk/silverstripe-excludechildren" : "dev-master"
+},
+"extra": {
+"installer-name": "podcast-simple"
+}
+}
