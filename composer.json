@@ -17,6 +17,7 @@
 "require": {
 "silverstripe/framework": ">=3.0",
 "silverstripe/cms": ">=3.0",
+"micschk/silverstripe-gridfieldsitetreebuttons": "dev-master",
 "micschk/silverstripe-excludechildren" : "dev-master"
 },
 "extra": {
