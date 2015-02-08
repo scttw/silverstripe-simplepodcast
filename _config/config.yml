@@ -1,0 +1,10 @@
+---
+Only:
+  classexists: 'ExcludeChildren'
+---
+PodcastHolder:
+  extensions:
+    - 'ExcludeChildren'
+  excluded_children:
+    - 'Podcast'
+  force_exclusion_beyond_cms: false

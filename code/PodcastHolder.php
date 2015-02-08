@@ -30,6 +30,31 @@ class PodcastHolder extends Page {
 		$fields->removeByName('Content');
 		$fields->removeByName('Metadata');
 
+		$gridFieldConfig = GridFieldConfig::create()->addComponents(
+			new GridFieldToolbarHeader(),
+			new GridFieldAddNewSiteTreeItemButton('toolbar-header-right'), // GridfieldSitetreebuttons module
+			new GridFieldSortableHeader(),
+			new GridFieldFilterHeader(),
+			$dataColumns = new GridFieldDataColumns(),
+			new GridFieldPaginator(20),
+			new GridFieldEditSiteTreeItemButton() // GridfieldSitetreebuttons module
+			// new GridFieldOrderableRows() // Gridfieldextensions module, default 'Sort' is equal to page sort field...
+		);
+		$dataColumns->setDisplayFields(array(
+			'Title' => 'Title',
+			'EpisodeTitle' => 'EpisodeTitle',
+			'Artist' => 'Artist',
+			'URLSegment'=> 'URL',
+			'LastEdited' => 'Changed',
+		));
+		// use gridfield as normal
+		$gridField = new GridField(
+		"Podcast", # Can be any name, field doesn't have to exist on model...
+		"Podcasts", 
+		SiteTree::get()->filter('ParentID', $this->ID),
+		$gridFieldConfig);
+		$fields->addFieldToTab("Root.Podcast", $gridField);
+
 		return $fields;
 	}
 
