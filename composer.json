@@ -15,8 +15,8 @@
 	"issues": "http://github.com/scttw/silverstripe-simplepodcast/issues"
 	},
 	"require": {
-		"silverstripe/framework": "3*",
-		"silverstripe/cms": "3*",
+		"silverstripe/framework": "*",
+		"silverstripe/cms": "*",
 		"micschk/silverstripe-gridfieldsitetreebuttons": "*",
 		"micschk/silverstripe-excludechildren" : "*"
 	},
