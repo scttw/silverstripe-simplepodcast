@@ -1,7 +1,7 @@
 {
 	"name": "scttw/silverstripe-simple-podcast",
 	"description": "A module to allow authoring of a simple podcast",
-	"type": "silverstripe-module",
+	"type": "silverstripe-vendormodule",
 	"homepage": "http://github.com/scttw/silverstripe-simplepodcast",
 	"keywords": ["silverstripe", "podcast"],
 	"license": "BSD-3-Clause",
@@ -12,15 +12,18 @@
 	}
 	],
 	"support": {
-	"issues": "http://github.com/scttw/silverstripe-simplepodcast/issues"
+    	"issues": "http://github.com/scttw/silverstripe-simplepodcast/issues"
 	},
 	"require": {
-		"silverstripe/framework": "*",
-		"silverstripe/cms": "*",
+		"silverstripe/cms": "^4",
 		"micschk/silverstripe-gridfieldsitetreebuttons": "*",
 		"micschk/silverstripe-excludechildren" : "*"
 	},
-	"extra": {
-		"installer-name": "podcast-simple"
-	}
+    "autoload": {
+        "psr-4": {
+            "scttw\\SimplePodcast\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
