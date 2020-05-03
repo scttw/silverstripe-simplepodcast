@@ -2,7 +2,7 @@
 Only:
   classexists: 'ExcludeChildren'
 ---
-PodcastHolder:
+scttw\Pages\PodcastHolder:
   extensions:
     - 'ExcludeChildren'
   excluded_children:

@@ -15,8 +15,9 @@
     	"issues": "http://github.com/scttw/silverstripe-simplepodcast/issues"
 	},
 	"require": {
-		"silverstripe/cms": "^4"
-	},
+		"silverstripe/cms": "^4",
+        "silverstripe/lumberjack": "^2.0"
+    },
     "autoload": {
         "psr-4": {
             "scttw\\SimplePodcast\\": "src/"
