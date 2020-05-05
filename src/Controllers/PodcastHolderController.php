@@ -36,6 +36,16 @@ class PodcastHolderController extends \PageController
         return str_replace("http://", "itms://", $this->AbsoluteLink() . "rss");
     }
 
+    public function paginatedPodcastList ()
+    {
+        $request = $this->getRequest();
+        $podcasts = $this->PodcastList();
 
+        $paginatedList = PaginatedList::create(
+            $podcasts,
+            $request
+        )->setPageLength(2);
+        return $paginatedList;
+    }
 }
 

@@ -10,6 +10,11 @@ use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Forms\DateField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\Form;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\FormMessage;
+use SilverStripe\Forms\RequiredFields;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
 
@@ -30,25 +35,26 @@ class PodcastUploadPageController extends \PageController
     public function PodcastUploadForm()
     {
         $uploadfield = UploadField::create('Audio');
-        $uploadfield->setFolderName('podcastfiles/new');
+        $uploadfield->setIsMultiUpload(false);
         $uploadfield->setAllowedExtensions(array('mp3'));
-        $uploadfield->setAutoUpload(true);
-        $uploadfield->setCanAttachExisting(false);
-        $uploadfield->setAllowedMaxFileNumber(1);
+        $uploadfield->setFolderName('podcastfiles/new');
+
         // die(print_r('here'));
 
-        $fields = new FieldList(
+        $fields = FieldList::create(
             TextField::create('EpisodeTitle'),
             TextField::create('Subject', 'Sermon Series'),
             TextareaField::create('Summary', 'Podcast Description'),
             TextField::create('Duration', 'Duration (in minutes and seconds, eg 34:33)'),
-            DateField::create('Date', 'Record Date (for example: 2010-06-22)')->setConfig('showcalendar', true),
+            $datefield = DateField::create('Date', 'Record Date (for example: 2010-06-22)'),
             TextField::create('Artist', 'Sermon preacher (eg Leigh Roberts)'),
             $uploadfield
         );
 
-        $actions = new FieldList(
-            new FormAction('doPodcastUpload', 'Submit')
+
+
+        $actions = FieldList::create(
+            FormAction::create('doPodcastUpload', 'Submit')
         );
         $validator = RequiredFields::create('Audio', 'EpisodeTitle', 'Duration', 'Date', 'Artist');
         $form = Form::create($this, 'PodcastUploadForm', $fields, $actions, $validator);
