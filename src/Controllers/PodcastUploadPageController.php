@@ -17,6 +17,7 @@ use SilverStripe\Forms\FormMessage;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
+use UncleCheese\Dropzone\FileAttachmentField;
 
 
 class PodcastUploadPageController extends \PageController
@@ -34,22 +35,26 @@ class PodcastUploadPageController extends \PageController
 
     public function PodcastUploadForm()
     {
-        $uploadfield = UploadField::create('Audio');
-        $uploadfield->setIsMultiUpload(false);
-        $uploadfield->setAllowedExtensions(array('mp3'));
-        $uploadfield->setFolderName('podcastfiles/new');
 
-        // die(print_r('here'));
+        $uploadfield = FileAttachmentField::create('Audio', 'Upload podcast file')
+            ->setFolderName('podcastfiles/new')
+            ->setAcceptedFiles(['.mp3', '.m4a', '.mp4', '.ogg', '.wma', '.oga'])
+            ->setView('grid')
+            ->setAutoProcessQueue(true)
+            ->setTrackFiles(true)
+            ->setMultiple(false);
 
         $fields = FieldList::create(
             TextField::create('EpisodeTitle'),
-            TextField::create('Subject', 'Sermon Series'),
+            TextField::create('Subject', 'Podcast Series'),
             TextareaField::create('Summary', 'Podcast Description'),
             TextField::create('Duration', 'Duration (in minutes and seconds, eg 34:33)'),
             $datefield = DateField::create('Date', 'Record Date (for example: 2010-06-22)'),
-            TextField::create('Artist', 'Sermon preacher (eg Leigh Roberts)'),
-            $uploadfield
+            TextField::create('Artist', 'Sermon preacher (eg John Smith)'),
+            $uploadfield,
+            TextField::create('ExternalLink', 'or enter the link to an externally hosted MP3/M4a file (eg dropbox)')
         );
+
 
 
 
@@ -58,6 +63,9 @@ class PodcastUploadPageController extends \PageController
         );
         $validator = RequiredFields::create('Audio', 'EpisodeTitle', 'Duration', 'Date', 'Artist');
         $form = Form::create($this, 'PodcastUploadForm', $fields, $actions, $validator);
+
+        $this->extend('updatePodcastUploadForm', $form);
+
         return $form;
     }
 
