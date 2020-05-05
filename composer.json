@@ -17,7 +17,7 @@
 	"require": {
 		"silverstripe/cms": "^4",
         "silverstripe/lumberjack": "^2.0",
-        "unclecheese/dropzone": "^1.4.14"
+        "unclecheese/dropzone": "dev-master#5cec6fb"
     },
     "autoload": {
         "psr-4": {
